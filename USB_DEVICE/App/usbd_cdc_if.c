@@ -268,8 +268,7 @@ static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
   USBD_CDC_ReceivePacket(&hUsbDeviceFS);
 
   for(uint8_t i = 0; i < (*Len); i++){
-	  UserRxBufferFS[rxLen++] = Buf[i];
-	  if(Buf[i] == '\r'){
+	  if((UserRxBufferFS[rxLen++] = Buf[i]) == '\r'){
 		  UserRxBufferFS[rxLen-1] = '\0';
 		  UserRxBufferFS[rxLen++] = '\r';
 		  UserRxBufferFS[rxLen++] = '\n';
